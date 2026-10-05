@@ -1,0 +1,176 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Reel Doctor 🩺</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f7f6f3;--c:#fff;--ink:#18181b;--mu:#71717a;--ln:#e7e5e0;--g:#1f9d55;--o:#e8820c;--r:#d93a3a;--sh:0 1px 2px rgba(0,0,0,.04),0 8px 24px rgba(0,0,0,.05);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#121214;--c:#1c1c1f;--ink:#f4f4f5;--mu:#a1a1aa;--ln:#2e2e33;--sh:none}}
+:root[data-theme=dark]{--bg:#121214;--c:#1c1c1f;--ink:#f4f4f5;--mu:#a1a1aa;--ln:#2e2e33;--sh:none}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.8 Cairo,system-ui,sans-serif}
+.w{max-width:760px;margin:0 auto;padding:24px 16px 64px}
+h1{font-size:34px;font-weight:800;margin:8px 0 0}h2{font-size:19px;font-weight:800;margin:0 0 10px}h3{font-size:15px;margin:14px 0 4px}
+.sub{color:var(--mu);margin:0 0 20px}
+.card{background:var(--c);border-radius:20px;box-shadow:var(--sh);border:1px solid var(--ln);padding:20px;margin:0 0 16px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}@media(max-width:520px){.grid{grid-template-columns:1fr}}
+label{display:block;font-size:14px;font-weight:600}label small{color:var(--mu);font-weight:400}
+input,select,textarea{width:100%;font:inherit;padding:9px 12px;border-radius:12px;border:1px solid var(--ln);background:var(--bg);color:var(--ink);margin-top:4px}
+textarea{min-height:64px;resize:vertical}:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.full{grid-column:1/-1}
+.btn{font:inherit;font-weight:800;background:var(--ink);color:var(--bg);border:0;border-radius:14px;padding:12px 28px;cursor:pointer;margin-top:14px}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--ln);font-weight:600;margin-inline-start:8px}
+.msg{padding:10px 14px;border-radius:12px;margin:8px 0;font-size:14px}.msg.e{background:#d93a3a22;color:var(--r)}.msg.w{background:#e8820c22;color:var(--o)}
+.g{--k:var(--g)}.o{--k:var(--o)}.r{--k:var(--r)}
+.top{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.ring{position:relative;width:150px;height:150px;flex:none}.ring b{position:absolute;inset:0;display:grid;place-items:center;font-size:38px;font-weight:800}.ring small{font-size:14px;color:var(--mu);font-weight:400}
+.mt{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}@media(max-width:520px){.mt{grid-template-columns:1fr 1fr}}
+.m{background:var(--bg);border-radius:14px;padding:10px 14px}.m span{font-size:13px;color:var(--mu)}.m b{display:block;font-size:24px;line-height:1.3}
+.bar{margin:12px 0}.bar .h{display:flex;justify-content:space-between;font-weight:600}.bar i{display:block;height:10px;border-radius:9px;background:var(--ln);overflow:hidden;margin:4px 0}.bar i u{display:block;height:100%;background:var(--k,var(--g));border-radius:9px}.bar p{margin:0;font-size:14px;color:var(--mu)}
+.chip{font-size:12px;border:1px solid var(--ln);border-radius:20px;padding:1px 10px;color:var(--mu);font-weight:400}
+.pr{border-inline-start:4px solid var(--k);padding:2px 14px;margin:12px 0}.pr b{color:var(--k)}
+ul{margin:6px 0;padding-inline-start:20px}li{margin:2px 0}
+.hk{background:var(--bg);border-radius:12px;padding:8px 14px;margin:8px 0}
+.ld{text-align:center;padding:48px 0;font-weight:600}.ld i{display:block;width:44px;height:44px;margin:0 auto 14px;border:4px solid var(--ln);border-top-color:var(--ink);border-radius:50%;animation:s 1s linear infinite}@keyframes s{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.ld i{animation:none}}
+dialog{border:1px solid var(--ln);border-radius:20px;background:var(--c);color:var(--ink);max-width:560px;width:calc(100% - 32px);padding:22px;font:inherit}dialog::backdrop{background:#0008}
+svg text{font-family:Cairo,sans-serif}
+</style></head><body><div class="w">
+<h1>Reel Doctor 🩺</h1><p class="sub">خلينا نعرف الريل بتاعك وقع فين.</p>
+<div class="card" id="fm"><h2>بيانات الريل</h2><div class="grid">
+<label>مدة الريل <small>(ثواني)</small><input id="dur" type="number" min="1" placeholder="32"></label>
+<label>Views<input id="views" type="number" min="0"></label>
+<label>Reach<input id="reach" type="number" min="0"></label>
+<label>Likes<input id="likes" type="number" min="0"></label>
+<label>Comments<input id="comm" type="number" min="0"></label>
+<label>Shares<input id="shares" type="number" min="0"></label>
+<label>Saves<input id="saves" type="number" min="0"></label>
+<label>متوسط وقت المشاهدة <small>(ثواني)</small><input id="awt" type="number" min="0" step="any"></label>
+<label>Followers<input id="fol" type="number" min="0"></label>
+<label>Non-Follower Reach % <small>(0–100)</small><input id="nf" type="number" min="0" max="100"></label>
+<label>زيارات البروفايل من الريل<input id="pv" type="number" min="0"></label>
+<label>Follows من الريل<input id="fw" type="number" min="0"></label></div>
+<h2 style="margin-top:22px">معلومات المحتوى</h2><div class="grid">
+<label class="full">الـHook <small>(أول جملة قلتها)</small><textarea id="hook"></textarea></label>
+<label class="full">فكرة الفيديو<textarea id="idea"></textarea></label>
+<label class="full">الـCTA<textarea id="cta"></textarea></label>
+<label>هدف الريل<select id="goal"><option>Reach</option><option>Followers</option><option>Engagement</option><option>Leads</option><option>Sales</option><option>Authority</option></select></label>
+<label>المجال<select id="niche"><option>Education</option><option>Business</option><option>Fitness</option><option>Personal Brand</option><option>E-commerce</option><option>Finance</option><option>Food</option><option>Lifestyle</option><option>Other</option></select></label>
+<label>فيه Captions؟<select id="cap"><option value="1">أيوه</option><option value="0">لا</option></select></label>
+<label>أول 3 ثواني فيها Hook واضح؟<select id="h3"><option value="1">أيوه</option><option value="0">لا</option></select></label>
+<label>الفيديو بيقدم Value واضحة؟<select id="val"><option value="1">أيوه</option><option value="0">لا</option></select></label></div>
+<div id="vm"></div><button class="btn" id="go">حلّل الريل</button><button class="btn ghost" id="demo" type="button">جرّب بيانات تجريبية</button></div>
+<div id="out"></div>
+<div class="card"><h2>بنحسب السكور إزاي؟</h2><p>التحليل مبني على مؤشرات زي: Watch Time، Retention، Shares، Saves، Engagement، جودة الـHook، ووضوح الـCTA. الـBenchmarks إرشادية، لأن Instagram مش بيعلن رقم ثابت للـRetention يناسب كل الحسابات.</p><button class="btn ghost" style="margin:0" id="mb">شوف المنهجية</button></div></div>
+<dialog id="md"><h2>المنهجية والمصادر</h2>
+<p><span class="chip">Platform fact</span> معلومات من Instagram نفسها:</p><ul>
+<li>Instagram Ranking Explained: بيشرح إن ترتيب الـReels بيعتمد على إشارات متعددة مش رقم واحد. <a href="https://about.instagram.com/blog/announcements/instagram-ranking-explained" target="_blank" rel="noopener">about.instagram.com</a></li>
+<li>تعريفات Reach وPlays وWatch time في Instagram Help Center. <a href="https://help.instagram.com" target="_blank" rel="noopener">help.instagram.com</a></li>
+<li>تصريحات علنية لـAdam Mosseri (2025) بإن Watch time وLikes وSends من أهم الإشارات. دي تصريحات مش وثيقة رسمية كاملة.</li></ul>
+<p><span class="chip">Industry heuristic</span> إرشادي:</p><ul>
+<li>حدود الـRetention والـShares والـSaves والـEngagement اللي في الأداة قواعد تقديرية للتوجيه، مش أرقام رسمية ومش من دراسة محددة.</li>
+<li>الأداء بيتغير حسب المجال، الجمهور، حجم الحساب، طول الفيديو، ونوع المحتوى.</li>
+<li>تحليل الـHook والفكرة والـCTA قائم على قواعد نصية بسيطة، مش فهم حقيقي للفيديو.</li>
+<li>رسم الـRetention تقدير مبني على متوسط وقت المشاهدة بس، مش منحنى حقيقي من Instagram.</li></ul>
+<button class="btn" onclick="md.close()">تمام</button></dialog>
+<script>
+const $=i=>document.getElementById(i),N=i=>{const v=$(i).value;return v===''?NaN:+v},Z=i=>N(i)||0;
+const pc=(a,b)=>b>0?a/b*100:null,f1=x=>x==null?'مش متاح':Math.round(x*10)/10+'%',cl=(x,a=0,b=100)=>Math.max(a,Math.min(b,x));
+const col=s=>s>=70?'g':s>=50?'o':'r',tier=s=>s>=70?2:s>=45?1:0;
+function ip(x,xs,ys){if(x<=xs[0])return ys[0];for(let i=1;i<xs.length;i++)if(x<=xs[i])return ys[i-1]+(x-xs[i-1])/(xs[i]-xs[i-1])*(ys[i]-ys[i-1]);return ys[ys.length-1]}
+const NAME={ret:'الـRetention',hook:'الـHook',sh:'الـShares',sv:'الـSaves',en:'الـEngagement',id:'فكرة الفيديو',cta:'الـCTA',conv:'تحويل الزيارات لمتابعين'};
+const EX={ret:['الناس بتخرج بدري شوية من الفيديو. دي من أكبر المشاكل.','نص الناس تقريبًا بتكمل. محتاج شوية تعديل في الإيقاع.','الناس بتكمل الفيديو. دي نقطة قوة.'],
+hook:['أول ثواني مش بتدي المشاهد سبب يكمل. جرب تبدأ بالنتيجة أو بالمشكلة نفسها.','الـHook معقول، بس ممكن يبقى أكتر تحديدًا.','الـHook واضح وبيشدّ. كمل بنفس الأسلوب.'],
+sh:['قليلين بيبعتوا الريل لحد. المحتوى محتاج Insight يستاهل يتبعت.','فيه Shares، وتزيد لو الفكرة بتلمس حاجة الناس بتحس بيها.','الناس بتبعت الريل لبعض. دي قوة حقيقية 🔥'],
+sv:['مفيش سبب يخلي الناس تحفظ الريل. زوّد خطوات أو قايمة يرجعوا لها.','فيه Saves معقولة. رتّب المعلومة كخطوات أو Checklist.','الريل بيتحفظ، يعني فيه قيمة تتكرر.'],
+en:['التفاعل ضعيف بالنسبة للوصول.','التفاعل متوسط.','التفاعل كويس بالنسبة للوصول.'],
+id:['الفكرة لسه مش واضحة أو مش بتحل مشكلة محددة.','الفكرة مفيدة، بس محتاجة زاوية مختلفة.','الفكرة قوية لأنها بتحل مشكلة واضحة.'],
+cta:['الـCTA مش واضح أو مش مرتبط بالهدف.','الـCTA مفهوم، بس ممكن يبقى أبسط وأقوى.','الـCTA واضح وسهل التنفيذ.'],
+conv:['الناس بتزور البروفايل ومش بتتابع. البروفايل أو الوعد محتاج شغل.','التحويل متوسط.','الناس اللي بتزور بتتابع. حلو جدًا.']};
+const PR={ret:'الناس بتخرج بدري من الفيديو',hook:'الـHook عام ومش محدد',sh:'الـShares أقل من المتوقع بالنسبة للـReach',sv:'الـSaves قليلة والمحتوى مش بيتحفظ',en:'التفاعل العام ضعيف',id:'الفكرة محتاجة زاوية أوضح',cta:'الـCTA مش مرتبط بهدف الريل',conv:'الزيارات مش بتتحول لمتابعين'};
+const WHY={ret:'وقت المشاهدة من أهم الإشارات المعروفة للـReels، فلو الناس خرجت بدري الوصول بيقف.',hook:'الناس بتقرر تكمل ولا تسكرول في أول ثواني، فالـHook بيحدد كام واحد هيفضل.',sh:'الشير بيوصّل الريل لناس جداد، وهو إشارة قوية على إن المحتوى يستاهل.',sv:'الحفظ معناه إن الشخص شايف قيمة يرجع لها.',en:'التفاعل بيقول إن الناس حسّت بحاجة تجاه الريل.',id:'الفكرة هي سبب إن حد يشوف ويبعت ويحفظ.',cta:'من غير خطوة واضحة، الناس بتخلص الفيديو وتمشي.',conv:'الزيارة من غير متابعة معناها وعد ضعيف أو بروفايل مش مقنع.'};
+const FIX={ret:'اقطع أي مقدمة، وغيّر المشهد أو الجملة كل 2–3 ثواني، وشيل الأجزاء اللي بتكرر نفسها.',hook:'ابدأ بالنتيجة أو المشكلة نفسها، وخلي أول جملة Specific وفيها رقم أو تفصيلة.',sh:'حط معلومة أو Insight الناس عايزة تبعته لحد، وقول لمين الريل ده (مثلاً: "ابعته لزميلك اللي...").',sv:'قدّم الحاجة كخطوات أو قايمة، وقول بوضوح "احفظ الريل وجرب بكرة".',en:'اسأل سؤال واحد محدد يتجاوب عليه في ثانية.',id:'اختار زاوية مختلفة: تجربة شخصية، غلطة شائعة، أو قبل وبعد.',cta:'اطلب Action واحد بس، مرتبط بهدف الريل، وبسبب واضح.',conv:'وضّح في البروفايل (Bio) إنت مين وهتستفيد إيه لو تابعت، واذكر ده في آخر الريل.'};
+const CTAG={Reach:'شير الريل لحد محتاجه',Followers:'تابعني لو عايز تشوف الجزء الجاي',Engagement:'اكتب في الكومنتات رقم الخطوة اللي هتبدأ بيها',Leads:'اكتب "جاهز" في الكومنتات وهبعتلك التفاصيل',Sales:'اكتب "عايز" في الكومنتات وهبعتلك اللينك',Authority:'احفظ الريل ده وجرب الخطوات بكرة'};
+// ---- calculations
+function calculateRetention(d,w){const p=pc(w,d),t=d<15?[40,55,70]:d<=30?[35,45,60]:[30,40,55];
+ const lb=p<t[0]?'ضعيف':p<t[1]?'محتاج تحسين':p<t[2]?'كويس':'قوي';
+ return{p,t,lb,s:Math.round(ip(p,[0,t[0],t[1],t[2],t[2]+15],[0,40,60,80,100]))}}
+const calculateEngagementRate=(l,c,s,v,r)=>pc(l+c+s+v,r),calculateShareRate=(s,r)=>pc(s,r),calculateSaveRate=(s,r)=>pc(s,r),calculateFollowConversion=(f,v)=>pc(f,v);
+function calculateHookScore(h,flag){const t=h.trim();if(!t)return{s:flag?40:20,good:[],bad:['مفيش Hook مكتوب، فمقدرش أحلل الصياغة.']};
+ let s=40;const g=[],b=[],w=t.split(/\s+/).length,A=(c,p,y,n)=>{if(c){s+=p;y&&g.push(y)}else if(n){s-=Math.abs(p)/2;b.push(n)}};
+ if(/^(أهلا|اهلا|أهلاً|مرحبا|ازيكم|إزيكم|النهارده|النهاردة|انهارده|هنتكلم|hi|hello|today)/i.test(t)){s-=22;b.push('بدأت بمقدمة عامة بدل ما تبدأ بالفايدة.')}
+ if(w>=4&&w<=15){s+=10;g.push('قصير وواضح بسرعة.')}else if(w>22){s-=12;b.push('طويل زيادة، المشاهد هيزهق قبل ما توصل للنقطة.')}else if(w<4){s-=8;b.push('قصير زيادة ومش مفهوم.')}
+ A(/\d|[٠-٩]/.test(t),10,'فيه رقم أو تفصيلة محددة.','مفيهوش رقم أو تفصيلة محددة.');
+ A(/[؟?]|ليه|إزاي|ازاي|سر|غلطة|الغلط|بتخسر|خسر|ماتعملش|متعملش|اوعى|احذر|قبل ما|محدش/.test(t),14,'فيه فضول بيخلي المشاهد عايز يعرف الباقي.','مفيش فضول أو سبب يخلي حد يكمل.');
+ A(/لو |عايز|مشكلة|واقف|فشل|تعبان|مش بتجيب|هتعرف|هتتعلم|طريقة/.test(t),8,'بيلمس مشكلة أو وعد.','مفيش وعد واضح (هستفيد إيه؟).');
+ A(/(إنت|انت|عندك|بتاعك|مبيعاتك|حسابك|ريلز|حياتك)/.test(t),6,'بيكلم المشاهد مباشرة.');
+ A(flag,10,'إنت قلت إن أول 3 ثواني فيها Hook واضح.','إنت نفسك مش شايف إن أول 3 ثواني فيها Hook واضح.');
+ return{s:Math.round(cl(s,5,97)),good:g,bad:b}}
+function calculateIdeaScore(idea,hook,flag,sh,sv,hs,goal){const t=idea.trim(),w=t?t.split(/\s+/).length:0;
+ const val=cl((flag?65:30)+(/خطوات|طريقة|قايمة|نصايح|مشكلة|حل|إزاي|ازاي|template|تمبلت|checklist/i.test(t)?20:0)),
+ D={clarity:w==0?10:w<6?35:w>45?55:78,relevance:/./.test(t)?(({Reach:/نصيح|معلومة|ترند|غلط/,Followers:/قصة|تجربة|إزاي|ازاي/,Engagement:/رأي|اختيار|ليه|سؤال/,Leads:/مشكلة|حل|عميل|خدمة/,Sales:/منتج|عرض|نتيجة|عميل/,Authority:/تجربة|خبرة|دراسة|حالة|نتيجة/}[goal]).test(t)?85:60):10,
+ value:val,curiosity:cl(hs*.85+8),shareability:Math.round(.6*sh+.4*val),saveability:Math.round(.6*sv+.4*(/خطوات|قايمة|checklist|template|تمبلت|طريقة/i.test(t)?85:val)),
+ differentiation:cl(40+(/\d/.test(t)?10:0)+(/تجربتي|قصتي|قبل وبعد|اكتشفت|غلطة|حقيقة/.test(t)?20:0)+(w>12?10:0))};
+ const W={clarity:.15,relevance:.1,value:.25,curiosity:.15,shareability:.1,saveability:.1,differentiation:.15};let s=0;for(const k in W)s+=D[k]*W[k];
+ s=Math.round(s);const ds=s>=70&&D.differentiation<60?'الفكرة حلوة، بس طريقة تقديمها متوقعة.':s>=70?'الفكرة قوية لأنها بتحل مشكلة واضحة.':s>=45?'الفكرة مفيدة، بس محتاجة زاوية مختلفة.':'الفكرة لسه مش واضحة كفاية.';
+ return{s,D,ds}}
+function calculateCTAScore(c,goal){const t=c.trim();if(!t)return{s:15,notes:['مفيش CTA مكتوب. الناس خلصت الفيديو ومعرفتش تعمل إيه.'],n:0};
+ const K={comment:/كومنت|اكتب|علق|comment/i,save:/save|احفظ|سيف|سيڤ/i,share:/شير|share|ابعت|send/i,follow:/follow|فولو|تابع|متابع/i,like:/لايك|like/i,link:/لينك|bio|البايو|dm|رسالة|احجز|اشترك/i};
+ const hit=Object.keys(K).filter(k=>K[k].test(t)),n=hit.length,notes=[];let s=n==0?30:n==1?70:n==2?50:28;
+ notes.push(n==1?'بيطلب Action واحد، وده أحسن.':n==0?'مفيش Action محدد.':'بيطلب '+n+' Actions مرة واحدة، والناس بتختار ولا حاجة.');
+ const al={Reach:['share','save'],Followers:['follow'],Engagement:['comment'],Leads:['link','comment'],Sales:['link','comment'],Authority:['save','follow']}[goal];
+ if(hit.some(h=>al.includes(h))){s+=12;notes.push('مرتبط بهدف الريل.')}else notes.push('مش مرتبط أوي بهدف الريل ('+goal+').');
+ if(/لو عايز|هبعتلك|مجان|جاهز|template|تمبلت|pdf|دليل|قايمة/i.test(t)){s+=12;notes.push('فيه سبب واضح تنفذ عشانه.')}else notes.push('مفيش سبب يخلي حد ينفذ (مثلاً: هبعتلك Template).');
+ if(/رأيكم|قولولي/.test(t)){s-=8;notes.push('"قولولي رأيكم" عام جدًا.')}
+ return{s:cl(s,5,97),notes,n}}
+function calculateOverallScore(S,goal){const W={Reach:{ret:32,sh:24,sv:10,en:8,hook:18,id:4,cta:4},Followers:{ret:28,sh:12,sv:8,en:8,hook:14,id:10,cta:5,conv:15},Engagement:{ret:22,sh:18,sv:12,en:22,hook:14,id:6,cta:6},Leads:{ret:18,sh:8,sv:16,en:8,hook:12,id:5,cta:18,conv:15},Sales:{ret:18,sh:8,sv:16,en:8,hook:12,id:5,cta:18,conv:15},Authority:{ret:25,sh:15,sv:20,en:10,hook:12,id:13,cta:5}}[goal];
+ let t=0,a=0;for(const k in W){if(S[k]==null)continue;t+=W[k];a+=S[k]*W[k]}return Math.round(a/t)}
+function generateDiagnosis(S,R){const ks=Object.keys(S).filter(k=>S[k]!=null).sort((a,b)=>S[a]-S[b]),w=ks[0],b=ks[ks.length-1];
+ let x='المشكلة الأساسية: '+PR[w]+'.';if(w=='hook'&&S.ret>=60)x+=' اللي وصل لنص الفيديو غالبًا كمل، بس عدد كبير خرج في البداية.';
+ if(w=='cta'&&S.ret>=60)x+=' الفيديو شغال، بس الناس مش عارفة تعمل إيه بعده.';
+ return{w,b,ks,text:x,low3:ks.slice(0,3)}}
+function generateRecommendations(ks){return ks.slice(0,3).map(k=>({k,t:FIX[k],why:WHY[k]}))}
+function hooks(d){let T=(d.idea||d.hook||'الموضوع ده').trim().split(/\s+/).slice(0,8).join(' ');return['أغلب الناس بتغلط في «'+T+'» والغلطة دي بتكلّفهم كتير.','قبل ما تعمل «'+T+'»، اعرف الحاجة الواحدة اللي بتفرق.','في '+Math.round(d.dur)+' ثانية هقولك إزاي «'+T+'» من غير ما تضيع وقتك.']}
+// ---- validation
+function validate(){const e=[],w=[],d=N('dur'),a=N('awt'),r=N('reach');
+ if(!(d>0))e.push('اكتب مدة الريل بالثواني.');if(isNaN(a)||a<0)e.push('اكتب متوسط وقت المشاهدة.');else if(d>0&&a>d)e.push('متوسط وقت المشاهدة أكبر من مدة الريل. راجع الرقمين.');
+ if(!(r>0))e.push('الـReach لازم يبقى أكبر من صفر.');
+ ['views','likes','comm','shares','saves','fol','pv','fw'].forEach(i=>{if(N(i)<0)e.push('في رقم سالب.')});
+ const nf=N('nf');if(!isNaN(nf)&&(nf<0||nf>100))e.push('نسبة Non-Follower لازم تبقى من 0 لـ100.');
+ if(N('views')<r)w.push('الـViews أقل من الـReach، غالبًا فيه خطأ في الأرقام.');if(Z('fw')>Z('pv')&&Z('pv')>0)w.push('الـFollows أكبر من زيارات البروفايل، راجع الأرقام.');
+ if(!$('hook').value.trim())w.push('نسيت الـHook. تحليل الـHook هيبقى محدود.');if(!$('idea').value.trim())w.push('فكرة الفيديو فاضية.');if(!$('cta').value.trim())w.push('الـCTA فاضي.');
+ return{e,w}}
+// ---- render
+const bar=(l,s,t,x)=>`<div class="bar ${col(s)}"><div class="h"><span>${l}</span><span>${s}/100</span></div><i><u style="width:${s}%"></u></i><p>${t}${x||''}</p></div>`;
+const li=a=>a.length?'<ul>'+a.map(x=>'<li>'+x+'</li>').join('')+'</ul>':'';
+function esc(s){return s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))}
+function run(){const v=validate();$('vm').innerHTML=v.e.map(x=>`<div class="msg e">${x}</div>`).join('')+v.w.map(x=>`<div class="msg w">${x}</div>`).join('');if(v.e.length)return;
+ const d={dur:N('dur'),awt:N('awt'),reach:N('reach'),views:Z('views'),l:Z('likes'),c:Z('comm'),sh:Z('shares'),sv:Z('saves'),fol:Z('fol'),nf:N('nf'),pv:Z('pv'),fw:Z('fw'),goal:$('goal').value,hook:$('hook').value,idea:$('idea').value,cta:$('cta').value,h3:$('h3').value=='1',val:$('val').value=='1'};
+ const steps=['بنراجع الأرقام...','بنحلل الـHook...','بنقارن الـRetention...','بنطلعلك التشخيص...'];let i=0;$('out').innerHTML='<div class="card ld"><i></i><span id="ls">'+steps[0]+'</span></div>';$('out').scrollIntoView({behavior:'smooth'});
+ const tm=setInterval(()=>{i++;if(i>=steps.length){clearInterval(tm);show(d)}else $('ls').textContent=steps[i]},550)}
+function show(d){const R=calculateRetention(d.dur,d.awt),er=calculateEngagementRate(d.l,d.c,d.sh,d.sv,d.reach),shr=calculateShareRate(d.sh,d.reach),svr=calculateSaveRate(d.sv,d.reach),lr=pc(d.l,d.reach),cr=pc(d.c,d.reach),fc=calculateFollowConversion(d.fw,d.pv),pvr=pc(d.pv,d.reach);
+ const H=calculateHookScore(d.hook,d.h3),S={ret:R.s,hook:H.s,sh:Math.round(ip(shr,[0,.1,.3,.7,1.5],[0,30,55,80,100])),sv:Math.round(ip(svr,[0,.2,.5,1,2],[0,30,55,80,100])),en:Math.round(ip(er,[0,1,3,6,10],[0,25,50,80,100]))};
+ const I=calculateIdeaScore(d.idea,d.hook,d.val,S.sh,S.sv,H.s,d.goal),C=calculateCTAScore(d.cta,d.goal);S.id=I.s;S.cta=C.s;
+ S.conv=d.pv>0?Math.round((ip(fc,[0,1,3,8,15],[0,30,55,80,100])+ip(pvr,[0,.5,1.5,3,6],[0,30,55,80,100]))/2):null;
+ const O=calculateOverallScore(S,d.goal),G=generateDiagnosis(S,R),RC=generateRecommendations(G.ks),k=col(O);
+ const vd=O>=80?'الريل ده شغال حلو جدًا 🔥':O>=65?'كويس، بس فيه كام حاجة مانعة الريل من إنه يجيب أكتر.':O>=45?'الريل مش وحش، بس محتاج شوية تعديل.':'الريل محتاج شغل، بس الحل واضح وهنمشي عليه خطوة خطوة.';
+ const circ=2*Math.PI*62,r=cl(d.awt/d.dur,.02,1),kk=1/r-1;let pts='';for(let t=0;t<=1.001;t+=.05)pts+=(t*300).toFixed(0)+','+(110-100*Math.pow(1-t,kk)).toFixed(1)+' ';
+ const bm=(l,v,b)=>{const mx=Math.max(v,b,.01)*1.25;return`<p style="margin:10px 0 2px"><b>${l}</b></p><div style="font-size:14px">الريل بتاعك ${f1(v)}</div><div class="bar g" style="margin:0"><i><u style="width:${v/mx*100}%"></u></i></div><div style="font-size:14px;color:var(--mu)">اتجاه إرشادي ${b}%</div><div class="bar" style="margin:0"><i><u style="width:${b/mx*100}%;background:var(--mu)"></u></i></div>`};
+ const dm=Object.entries(I.D),dl={clarity:'الوضوح',relevance:'الارتباط بالهدف',value:'القيمة',curiosity:'الفضول',shareability:'قابلية الشير',saveability:'قابلية الحفظ',differentiation:'التميّز'};
+ const keys=['ret','hook','sh','sv','en','id','cta'].concat(S.conv!=null?['conv']:[]);
+ const top=G.low3,al=hooks(d);
+ $('out').innerHTML=`
+<div class="card ${k}"><h2>نتيجة الريل</h2><div class="top"><div class="ring"><svg viewBox="0 0 150 150" width="150" height="150"><circle cx="75" cy="75" r="62" fill="none" stroke="var(--ln)" stroke-width="12"/><circle cx="75" cy="75" r="62" fill="none" stroke="var(--k)" stroke-width="12" stroke-linecap="round" stroke-dasharray="${circ*O/100} ${circ}" transform="rotate(90 75 75) scale(1,-1) translate(0,-150)"/></svg><b>${O}<small>/100</small></b></div>
+<div style="flex:1;min-width:200px"><p style="margin:0;font-weight:800;font-size:18px">الريل ده جاب ${O}/100</p><p style="margin:4px 0">${vd}</p><p style="margin:4px 0">🔥 أقوى حاجة: ${NAME[G.b]} (${S[G.b]}/100).</p><p style="margin:4px 0">⚠️ أكبر مشكلة: ${PR[G.w]}.</p></div></div></div>
+<div class="card"><h2>الدكتور بيقولك إيه؟</h2><div class="pr ${col(S[G.w])}"><b>🩺 ${G.text}</b></div><h3>أكبر 3 مشاكل</h3><ol>${top.map(x=>`<li>${PR[x]} <small style="color:var(--mu)">(${NAME[x]}: ${S[x]}/100). ${WHY[x]}</small></li>`).join('')}</ol></div>
+<div class="card"><h2>الأرقام</h2><div class="mt"><div class="m"><span>Views</span><b>${d.views.toLocaleString('en')}</b></div><div class="m"><span>Retention</span><b>${f1(R.p)}</b></div><div class="m"><span>Shares</span><b>${f1(shr)}</b></div><div class="m"><span>Saves</span><b>${f1(svr)}</b></div><div class="m"><span>Engagement (من الـReach)</span><b>${f1(er)}</b></div><div class="m"><span>Non-followers</span><b>${isNaN(d.nf)?'مش متاح':d.nf+'%'}</b></div><div class="m"><span>Likes</span><b>${f1(lr)}</b></div><div class="m"><span>Comments</span><b>${f1(cr)}</b></div><div class="m"><span>Follow conversion</span><b>${f1(fc)}</b></div></div>
+<p style="font-size:14px;color:var(--mu)">${isNaN(d.nf)?'':d.nf>=50?'نسبة الـNon-followers عالية، يعني الريل وصل لجمهور جديد. بس ده لوحده مش دليل نجاح.':'أغلب المشاهدين من متابعينك. الوصول لناس جداد محدود.'}</p></div>
+<div class="card"><h2>تقييم كل عنصر</h2>${keys.map(x=>bar(NAME[x],S[x],EX[x][tier(S[x])])).join('')}</div>
+<div class="card ${col(S.ret)}"><h2>الـRetention: ${f1(R.p)} <span class="chip">${R.lb}</span></h2><p>متوسط المشاهدة ${d.awt} من ${d.dur} ثانية. Benchmark إرشادي، مش رقم رسمي من Instagram: الضعيف تحت ${R.t[0]}%، وكويس من ${R.t[1]}%، وقوي من ${R.t[2]}%.</p>
+<svg viewBox="0 0 300 130" width="100%" style="max-width:420px"><polyline points="${pts}" fill="none" stroke="var(--k)" stroke-width="3"/><line x1="0" y1="110" x2="300" y2="110" stroke="var(--ln)"/><text x="150" y="126" font-size="10" text-anchor="middle" fill="var(--mu)">تقدير مبسط للـRetention (Estimated) - مش منحنى حقيقي</text></svg>
+<span class="chip">Industry heuristic</span><span class="chip">إرشادي فقط</span>${bm('Retention',R.p,R.t[1])}${bm('Share rate',shr||0,.7)}${bm('Save rate',svr||0,.5)}<p style="font-size:13px;color:var(--mu)">الأداء بيتغير حسب المجال، الجمهور، حجم الحساب، طول الفيديو، ونوع المحتوى.</p></div>
+<div class="card ${col(H.s)}"><h2>تحليل الـHook: ${H.s}/100</h2><p>${EX.hook[tier(H.s)]}</p>${d.hook.trim()?`<div class="hk">«${esc(d.hook)}»</div>`:''}<h3>إيه اللي كويس؟</h3>${H.good.length?li(H.good):'<p>مفيش حاجة واضحة لسه.</p>'}<h3>إيه اللي ناقص؟</h3>${H.bad.length?li(H.bad):'<p>مفيش نقاط ضعف واضحة.</p>'}</div>
+<div class="card ${col(I.s)}"><h2>تحليل الفكرة: ${I.s}/100</h2><p><b>${I.ds}</b></p>${dm.map(([a,b])=>bar(dl[a],Math.round(b),'')).join('')}<h3>إزاي تعمل نفس الفكرة بشكل أقوى؟</h3>${li(['ابدأ بالنتيجة أو بالمشكلة، مش بالشرح.','دوّر على أضعف نقطة فوق ('+dl[dm.sort((a,b)=>a[1]-b[1])[0][0]]+') وركز عليها.','أضف تفصيلة شخصية أو رقم حقيقي من تجربتك.'])}</div>
+<div class="card ${col(C.s)}"><h2>تحليل الـCTA: ${C.s}/100</h2>${li(C.notes)}<h3>CTA أفضل لهدف ${d.goal}</h3><div class="hk">«${CTAG[d.goal]}»</div></div>
+<div class="card"><h2>لو هنصلح الريل الجاي، نبدأ بإيه؟</h2>${RC.map((x,i)=>`<div class="pr r"><b>🔥 Priority #${i+1}: ${PR[x.k]}</b><br>إزاي؟ ${x.t}<br><small style="color:var(--mu)">ليه؟ ${x.why}</small></div>`).join('')}</div>
+<div class="card"><h2>3 Hooks جداد</h2>${al.map(x=>`<div class="hk">${esc(x)}</div>`).join('')}<p style="font-size:13px;color:var(--mu)">قوالب جاهزة، عدّلها على كلامك.</p></div>`}
+$('go').onclick=run;$('mb').onclick=()=>$('md').showModal();
+$('demo').onclick=()=>{const m={dur:32,views:24800,reach:19500,likes:820,comm:46,shares:410,saves:310,awt:15.4,fol:5200,nf:74,pv:260,fw:38,hook:'النهارده هقولك 3 طرق تزود بيهم مبيعاتك',idea:'3 طرق بسيطة تزود بيها مبيعات مشروعك الصغير من الإنستجرام',cta:'قولولي رأيكم في الكومنتات واعملوا فولو ولايك وشير'};for(const k in m)$(k).value=m[k]};
+</script></body></html>
